@@ -59,9 +59,13 @@ resource "aws_iam_role" "ec2full" {
       },
     ]
   })
-
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonEC2FullAccess"]
 }
+
+resource "aws_iam_role_policy_attachment" "ec2fullaccess" {
+  role       = aws_iam_role.ec2full.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
 
 resource "aws_iam_instance_profile" "ec2full" {
   name = "projectec2full-${var.user}"
