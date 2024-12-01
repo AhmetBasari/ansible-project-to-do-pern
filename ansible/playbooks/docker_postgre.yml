@@ -1,0 +1,9 @@
+- name: configure postgre container
+  hosts: _ansible_postgresql
+  become: true
+  tasks:
+    - name: ugrade all packages
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+        
